@@ -1,4 +1,5 @@
 #include <iostream>
+#include <math.h>
 
 
 int strlen(char *c){
@@ -10,27 +11,44 @@ return i;
 }
 
 
-void int_to_a(long i,char *&c){
+void int_to_a(long j,char *&c){
     c = new char[10];
     int p =0;
 
     /*
-     * i = 123456
+     * i = 1234567
      * c = 654321 ar trebui sa fie 123456
      */
+//
+//    long ogl = 0;
+//    while(i!=0){
+//        ogl=ogl*10+i%10;
+//        i/=10;
+//    }
+//    // am facut oglinditul, adica din 123456 ogl=654321
+//
+//    while(ogl!=0){
+//        char nr =  ogl %10+'0';//am scris + '0' ca sa imi ia codul asci lui 0 si sa adauge cifra mea.. si apoi cand va fi afisat ca si char va afisa caracterul respectivului numar
+//        ogl/=10;
+//        c[p++]=nr;
+//    }
 
-    long ogl = 0;
-    while(i!=0){
-        ogl=ogl*10+i%10;
-        i/=10;
-    }
-    // am facut oglinditul, adica din 123456 ogl=654321
+    if(j<0){
+        while(j!=0){
+            c[9-p++] = -j%10+'0';
+            j/=10;
+        }
+        c[9-p]='-';
+        c= c+9-p;
 
-    while(ogl!=0){
-        char nr =  ogl %10+'0';//am scris + '0' ca sa imi ia codul asci lui 0 si sa adauge cifra mea.. si apoi cand va fi afisat ca si char va afisa caracterul respectivului numar
-        ogl/=10;
-        c[p++]=nr;
+    }else{
+        while(j!=0){
+            c[9-p++] = j%10+'0';
+            j/=10;
+        }
+        c= c+9-p+1;
     }
+
 
 
 
